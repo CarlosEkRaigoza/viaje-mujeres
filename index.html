@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicitud de Viaje</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="app-screen" id="loginScreen">
+      <h2>Iniciar Sesión</h2>
+      <input type="text" id="usuario" placeholder="Usuario" />
+      <input type="password" id="password" placeholder="Contraseña" />
+      <button onclick="login()">Ingresar</button>
+    </div>
+
+    <div class="app-screen" id="solicitudScreen" style="display: none;">
+      <h2>Solicitar Viaje</h2>
+      <input type="text" id="origen" placeholder="Lugar de origen" />
+      <input type="text" id="destino" placeholder="Destino" />
+      <button onclick="confirmarViaje()">Confirmar</button>
+      <button class="cancelar" onclick="logout()">Cancelar</button>
+    </div>
+
+    <div class="app-screen" id="confirmacionScreen" style="display: none;">
+      <h2>Viaje Confirmado</h2>
+      <p id="resumenViaje"></p>
+      <button onclick="logout()">Cerrar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
