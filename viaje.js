@@ -170,7 +170,6 @@ function showMapError(message) {
 // --- Cancelar viaje ---
 document.addEventListener("DOMContentLoaded", () => {
   const cancelarBtn = document.getElementById("cancelar-btn");
-  const confirmacionDiv = document.getElementById("confirmacion-cancelacion");
   const continuarBtn = document.getElementById("continuar-btn");
   const confirmarCancelarBtn = document.getElementById("confirmar-cancelar-btn");
   const modalCancelar = document.getElementById("modal-cancelar");
