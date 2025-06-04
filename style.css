@@ -118,6 +118,10 @@ body {
   transform: scale(1.03);
 }
 
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
 /* Texto switch para cambiar formularios */
 .switch-text {
   margin-top: 15px;
@@ -152,9 +156,6 @@ body {
   }
 }
 
-.btn-primary:active {
-  transform: scale(0.97);
-}
 
 /* Animación sutil para el logo */
 
