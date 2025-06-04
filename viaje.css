@@ -1,0 +1,405 @@
+/* --- Estilos base y estructura --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffe6f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.phone-frame {
+  position: relative;
+  width: 360px;
+  min-height: 600px;
+  background: white;
+  border: 16px solid #ff69b4;
+  border-radius: 40px;
+  box-shadow: 0 0 20px #ff69b4aa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.app-container {
+  width: 320px;
+  padding: 20px;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  width: 80px;
+  margin-bottom: 8px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.logo-container h1 {
+  color: #d81b60;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+/* --- Formularios (fase buscar) --- */
+.formulario {
+  display: none;
+  background: #fff0f6;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.2);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.formulario.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.formulario h2 {
+  color: #ad1457;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.formulario input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formulario input:focus {
+  border-color: #d81b60;
+  outline: none;
+  box-shadow: 0 0 8px #d81b60aa;
+}
+
+/* --- Botón principal --- */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #d81b60, #f48fb1);
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #f48fb1, #d81b60);
+  transform: scale(1.03);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  background-color: #f48fb1;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #d81b60;
+  transform: scale(1.03);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+
+/* --- Simulación de viaje --- */
+.simulacion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #fff0f6;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.15);
+}
+
+.simulacion-info {
+  font-size: 0.95rem;
+  color: #880e4f;
+  background: #fce4ec;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+#map {
+  width: 100%;
+  height: 250px;
+  border: 2px solid #ff69b4;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.simulacion-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-cancelar {
+  background: #ff1744;
+  border: none;
+  color: white;
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background: #d50000;
+}
+
+/* Confirmación cancelación */
+.confirmacion-cancelacion {
+  background: #fff0f6;
+  border: 2px solid #f06292;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.confirmacion-oculta {
+  display: none;
+}
+
+.confirmacion-visible {
+  display: block;
+}
+
+.confirmacion-cancelacion p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.confirmacion-cancelacion button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+#confirmar-cancelar-btn {
+  background: #d81b60;
+  color: white;
+}
+
+#continuar-btn {
+  background: #cfd8dc;
+  color: #333;
+}
+
+/* --- Generalidades --- */
+.switch-text {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #ad1457;
+}
+
+.switch-text a {
+  color: #d81b60;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.switch-text a:hover {
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 400px) {
+  .phone-frame {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .app-container {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+/* Logo animado */
+.logo-container img:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Enlaces animados */
+.switch-text a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #d81b60;
+  transition: width 0.3s ease;
+}
+
+.switch-text a:hover::after {
+  width: 100%;
+}
+
+/* Toast */
+#toast-container {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  position: relative;
+  z-index: 10;
+}
+
+.toast-message {
+  background-color: #d81b60cc;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(216, 27, 96, 0.5);
+  max-width: 320px;
+  text-align: center;
+  pointer-events: auto;
+  animation: fadeInOut 4s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}
+
+/* --- Utilidad --- */
+.oculto {
+  display: none !important;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(216, 27, 96, 0.8);
+  display: none; /* oculto por defecto */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1; /* para mostrar y centrar el contenido */
+}
+
+.modal-content {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 20px;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 0 20px #d81b60aa;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #880e4f;
+}
+
+/* Botones dentro del modal */
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 15px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Botón confirmar */
+#btn-confirmar {
+  background: linear-gradient(90deg, #d81b60, #f48fb1);
+  color: white;
+}
+
+#btn-confirmar:hover {
+  background: linear-gradient(90deg, #f48fb1, #d81b60);
+}
+
+/* Botón modificar */
+#btn-modificar {
+  background: #cfd8dc;
+  color: #333;
+}
+
+#btn-modificar:hover {
+  background: #b0bec5;
+}

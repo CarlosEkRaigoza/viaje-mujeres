@@ -118,7 +118,7 @@ loginForm.addEventListener('submit', (e) => {
   } else {
     showToast('Has iniciado sesión correctamente');
     setTimeout(() => {
-      window.location.href = 'buscar_viaje.html';
+      window.location.href = 'viaje.html';
     }, 1500);
   }
 });
