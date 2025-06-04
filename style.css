@@ -1,59 +1,249 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffe6f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
+/* Simula pantalla teléfono */
 .phone-frame {
-  width: 375px;
-  height: 667px;
-  background-color: white;
-  border: 14px solid #333;
+  position: relative; /* necesario para posicionar los toasts relativos */
+  width: 360px;
+  min-height: 600px;
+  background: white;
+  border: 16px solid #ff69b4;
   border-radius: 40px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  overflow: hidden;
+  box-shadow: 0 0 20px #ff69b4aa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
-.app-screen {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
+/* Contenedor app */
+.app-container {
+  width: 320px;
+  padding: 20px;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  width: 80px;
+  margin-bottom: 8px;
+}
+
+.logo-container h1 {
+  color: #d81b60;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+/* Formularios */
+.formulario {
+  display: none;
+  background: #fff0f6;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.2);
   text-align: center;
 }
 
-input[type="text"],
-input[type="password"] {
-  padding: 0.6rem;
-  margin-bottom: 1rem;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+.formulario.active {
+  display: block;
 }
 
-button {
-  padding: 0.6rem 1.2rem;
-  margin: 0.3rem;
+.formulario h2 {
+  color: #ad1457;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.formulario input[type="text"],
+.formulario input[type="tel"],
+.formulario input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formulario input:focus {
+  border-color: #d81b60;
+  outline: none;
+}
+
+/* Botón principal */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #d81b60, #f48fb1);
   border: none;
-  border-radius: 6px;
-  background-color: #007bff;
   color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #f48fb1, #d81b60);
+}
+
+/* Texto switch para cambiar formularios */
+.switch-text {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #ad1457;
+}
+
+.switch-text a {
+  color: #d81b60;
+  font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.switch-text a:hover {
+  text-decoration: underline;
 }
 
-button.cancelar {
-  background-color: #dc3545;
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 400px) {
+  .phone-frame {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+  .app-container {
+    width: 90%;
+    padding: 15px;
+  }
 }
 
-button.cancelar:hover {
-  background-color: #a71d2a;
+/* Animar aparición de formularios */
+.formulario {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.formulario.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Animación suave al enfocar inputs */
+.formulario input:focus {
+  border-color: #d81b60;
+  outline: none;
+  box-shadow: 0 0 8px #d81b60aa;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animación al botón */
+.btn-primary {
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #f48fb1, #d81b60);
+  transform: scale(1.03);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* Animación sutil para el logo */
+.logo-container img {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.logo-container img:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Subrayado animado para enlaces */
+.switch-text a {
+  position: relative;
+  text-decoration: none;
+}
+
+.switch-text a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #d81b60;
+  transition: width 0.3s ease;
+}
+
+.switch-text a:hover::after {
+  width: 100%;
+}
+
+/* Contenedor toast */
+#toast-container {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  position: relative; /* para que los toasts queden dentro de flujo normal */
+  z-index: 10;
+}
+
+.toast-message {
+  background-color: #d81b60cc;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(216, 27, 96, 0.5);
+  max-width: 320px;
+  text-align: center;
+  pointer-events: auto;
+  animation: fadeInOut 4s ease forwards;
+}
+
+/* Animación para que el toast aparezca y luego desaparezca */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
 }

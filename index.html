@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solicitud de Viaje</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FEMME</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="phone-frame">
-    <div class="app-screen" id="loginScreen">
-      <h2>Iniciar Sesión</h2>
-      <input type="text" id="usuario" placeholder="Usuario" />
-      <input type="password" id="password" placeholder="Contraseña" />
-      <button onclick="login()">Ingresar</button>
-    </div>
+    <div class="app-container">
 
-    <div class="app-screen" id="solicitudScreen" style="display: none;">
-      <h2>Solicitar Viaje</h2>
-      <input type="text" id="origen" placeholder="Lugar de origen" />
-      <input type="text" id="destino" placeholder="Destino" />
-      <button onclick="confirmarViaje()">Confirmar</button>
-      <button class="cancelar" onclick="logout()">Cancelar</button>
-    </div>
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="Logo Uber Mujeres" class="logo" />
+        <h1>Viaja segura, viaja tranquila</h1>
+      </div>
+      
+      <div id="toast-container"></div>
+      
+      <!-- Login Form -->
+      <form id="login-form" class="formulario active">
+        <h2>Iniciar sesión</h2>
+        <input id="login-phone" type="tel" placeholder="Número de teléfono" required />
+        <input id="login-password" type="password" placeholder="Contraseña" required />
+        <button type="submit" class="btn-primary">
+          Entrar
+          <span class="spinner" hidden></span>
+        </button>
+        <p class="switch-text">
+          ¿No tienes cuenta?
+          <a href="#" id="go-register">Crear cuenta</a>
+        </p>
+      </form>
 
-    <div class="app-screen" id="confirmacionScreen" style="display: none;">
-      <h2>Viaje Confirmado</h2>
-      <p id="resumenViaje"></p>
-      <button onclick="logout()">Cerrar</button>
+      <!-- Register Form -->
+      <form id="register-form" class="formulario">
+        <h2>Crear cuenta</h2>
+        <input id="register-name" type="text" placeholder="Nombre completo" required />
+        <input id="register-phone" type="tel" placeholder="Número de teléfono" required />
+        <input id="register-password" type="password" placeholder="Contraseña" required />
+        <button type="submit" class="btn-primary">
+          Registrarse
+          <span class="spinner" hidden></span>
+        </button>
+        <p class="switch-text">
+          ¿Ya tienes cuenta?
+          <a href="#" id="go-login">Iniciar sesión</a>
+        </p>
+      </form>
+      
+    
     </div>
+    
   </div>
+
+  <!-- Contenedor para mensajes tipo toast -->
+  
 
   <script src="script.js"></script>
 </body>
+
 </html>
