@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #ffe6f0;
   display: flex;
   justify-content: center;
@@ -43,6 +43,7 @@ body {
 .logo-container img {
   width: 80px;
   margin-bottom: 8px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .logo-container h1 {
@@ -60,10 +61,15 @@ body {
   padding: 25px 20px;
   box-shadow: 0 6px 15px rgba(216, 27, 96, 0.2);
   text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
 .formulario.active {
   display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .formulario h2 {
@@ -88,6 +94,8 @@ body {
 .formulario input:focus {
   border-color: #d81b60;
   outline: none;
+  box-shadow: 0 0 8px #d81b60aa;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Botón principal */
@@ -102,10 +110,12 @@ body {
   border-radius: 12px;
   cursor: pointer;
   transition: background 0.3s ease;
+  transition: transform 0.1s ease;
 }
 
 .btn-primary:hover {
   background: linear-gradient(90deg, #f48fb1, #d81b60);
+  transform: scale(1.03);
 }
 
 /* Texto switch para cambiar formularios */
@@ -120,6 +130,7 @@ body {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+  position: relative;
 }
 
 .switch-text a:hover {
@@ -141,45 +152,11 @@ body {
   }
 }
 
-/* Animar aparición de formularios */
-.formulario {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.formulario.active {
-  display: block;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Animación suave al enfocar inputs */
-.formulario input:focus {
-  border-color: #d81b60;
-  outline: none;
-  box-shadow: 0 0 8px #d81b60aa;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Animación al botón */
-.btn-primary {
-  transition: background 0.3s ease, transform 0.1s ease;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(90deg, #f48fb1, #d81b60);
-  transform: scale(1.03);
-}
-
 .btn-primary:active {
   transform: scale(0.97);
 }
 
 /* Animación sutil para el logo */
-.logo-container img {
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
 
 .logo-container img:hover {
   transform: scale(1.1);
@@ -187,13 +164,9 @@ body {
 }
 
 /* Subrayado animado para enlaces */
-.switch-text a {
-  position: relative;
-  text-decoration: none;
-}
 
 .switch-text a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -238,7 +211,8 @@ body {
     opacity: 0;
     transform: translateY(-15px);
   }
-  10%, 90% {
+  10%,
+  90% {
     opacity: 1;
     transform: translateY(0);
   }
