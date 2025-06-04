@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Viaje - FEMME</title>
   <link rel="stylesheet" href="viaje.css" />
 </head>
+
 <body>
   <div class="phone-frame">
     <div class="app-container">
@@ -43,25 +45,32 @@
         </div>
 
         <div id="map"></div>
-        <button id="cancelar-btn" class="cancelar">Cancelar viaje</button>
+        <button id="cancelar-btn" class="btn btn-secondary">Cancelar viaje</button>
 
-        <div id="confirmacion-cancelacion" class="confirmacion-oculta">
-          <p>¿Estás seguro de cancelar el viaje? Considera que la conductora ya está en camino.</p>
-          <div class="botones-confirmacion">
-            <button id="continuar-btn">Continuar con el viaje</button>
-            <button id="confirmar-cancelar-btn" class="cancelar">Cancelar viaje</button>
+        <div id="modal-cancelar" class="modal oculto">
+          <div class="modal-content">
+            <p>¿Estás segura de cancelar el viaje? La conductora ya está en camino.</p>
+            <div class="modal-buttons">
+              <button id="continuar-btn" class="btn btn-primary">Continuar con el viaje</button>
+              <button id="confirmar-cancelar-btn" class="btn btn-secondary cancelar">Cancelar viaje</button>
+            </div>
           </div>
         </div>
+
+        <div id="mensaje-cancelado" class="oculto mensaje-cancelacion">
+          Has cancelado el viaje. Puedes buscar uno nuevo.
+        </div>
+
+        <!-- Toast container -->
+        <div id="toast-container"></div>
+
       </div>
-
-      <!-- Toast container -->
-      <div id="toast-container"></div>
-
     </div>
-  </div>
 
-  <!-- Scripts -->
-     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGHcIMjst4HV5SoeYPLLKEoXKx_ArPRzw&callback=initMap"></script>
-  <script src="viaje.js" defer></script>
+    <!-- Scripts -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGHcIMjst4HV5SoeYPLLKEoXKx_ArPRzw&callback=initMap"></script>
+    <script src="viaje.js" defer></script>
 </body>
+
 </html>

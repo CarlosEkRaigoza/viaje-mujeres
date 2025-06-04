@@ -92,6 +92,14 @@ body {
   box-shadow: 0 0 8px #d81b60aa;
 }
 
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
 /* --- Botón principal --- */
 .btn-primary {
   width: 100%;
@@ -363,6 +371,17 @@ body {
   text-align: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #880e4f;
+}
+
+.mensaje-cancelacion {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #ffe6e6;
+  border: 1px solid #ff4d4d;
+  border-radius: 6px;
+  color: #990000;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* Botones dentro del modal */
