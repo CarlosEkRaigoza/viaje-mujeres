@@ -146,7 +146,6 @@ body {
   transform: scale(0.97);
 }
 
-
 /* --- Simulación de viaje --- */
 .simulacion-container {
   display: flex;
@@ -199,20 +198,52 @@ body {
 
 /* Confirmación cancelación */
 .confirmacion-cancelacion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); /* Fondo oscuro */
+  display: none; /* Oculto por defecto */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirmacion-cancelacion.confirmacion-visible {
+  display: flex; /* visible si tiene esta clase */
+}
+
+.modal-content {
   background: #fff0f6;
   border: 2px solid #f06292;
-  padding: 15px;
   border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 300px;
   text-align: center;
-  margin-top: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.confirmacion-oculta {
-  display: none;
+.modal-content p {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #880e4f;
 }
 
-.confirmacion-visible {
-  display: block;
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .confirmacion-cancelacion p {
@@ -274,151 +305,66 @@ body {
   }
 }
 
-/* Logo animado */
-.logo-container img:hover {
-  transform: scale(1.1);
-  opacity: 0.9;
-}
-
-/* Enlaces animados */
-.switch-text a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: #d81b60;
-  transition: width 0.3s ease;
-}
-
-.switch-text a:hover::after {
-  width: 100%;
-}
-
-/* Toast */
+/* TOAST container y estilos generales */
 #toast-container {
+  position: absolute; /* Flota dentro del contenedor relativo */
+  top: 20px; /* Ajusta según dónde quieras que aparezca */
+  left: 0;
   width: 100%;
-  margin: 10px 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  z-index: 1000;
   pointer-events: none;
-  position: relative;
-  z-index: 10;
 }
 
 .toast-message {
-  background-color: #d81b60cc;
+  min-width: 250px;
+  max-width: 90vw;
+  padding: 12px 18px;
   color: white;
-  padding: 12px 20px;
-  border-radius: 20px;
-  font-weight: 600;
-  box-shadow: 0 3px 8px rgba(216, 27, 96, 0.5);
-  max-width: 320px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadein 0.3s ease, fadeout 0.5s ease 3.5s;
   text-align: center;
-  pointer-events: auto;
-  animation: fadeInOut 4s ease forwards;
 }
 
-@keyframes fadeInOut {
-  0% {
+/* Tipos de toast */
+.toast-message.success {
+  background-color: #4caf50;
+}
+
+.toast-message.error {
+  background-color: #f44336;
+}
+
+.toast-message.warning {
+  background-color: #ff9800;
+}
+
+.toast-message.info {
+  background-color: #2196f3;
+}
+
+@keyframes fadein {
+  from {
     opacity: 0;
-    transform: translateY(-15px);
+    transform: translateY(-20px);
   }
-  10%,
-  90% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
-  100% {
-    opacity: 0;
-    transform: translateY(-15px);
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    transform: translateY(0);
   }
-}
-
-/* --- Utilidad --- */
-.oculto {
-  display: none !important;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(216, 27, 96, 0.8);
-  display: none; /* oculto por defecto */
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  transition: opacity 0.3s ease;
-}
-
-.modal.show {
-  display: flex;
-  opacity: 1; /* para mostrar y centrar el contenido */
-}
-
-.modal-content {
-  background: white;
-  padding: 25px 30px;
-  border-radius: 20px;
-  max-width: 320px;
-  width: 90%;
-  box-shadow: 0 0 20px #d81b60aa;
-  text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #880e4f;
-}
-
-.mensaje-cancelacion {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #ffe6e6;
-  border: 1px solid #ff4d4d;
-  border-radius: 6px;
-  color: #990000;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Botones dentro del modal */
-.modal-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-  gap: 15px;
-}
-
-.modal-buttons button {
-  flex: 1;
-  padding: 12px 0;
-  border-radius: 15px;
-  border: none;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-/* Botón confirmar */
-#btn-confirmar {
-  background: linear-gradient(90deg, #d81b60, #f48fb1);
-  color: white;
-}
-
-#btn-confirmar:hover {
-  background: linear-gradient(90deg, #f48fb1, #d81b60);
-}
-
-/* Botón modificar */
-#btn-modificar {
-  background: #cfd8dc;
-  color: #333;
-}
-
-#btn-modificar:hover {
-  background: #b0bec5;
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }

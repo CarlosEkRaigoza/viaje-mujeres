@@ -1,0 +1,457 @@
+:root {
+  --color-rosa: #ff69b4;
+  --color-rosa-oscuro: #d81b60;
+  --color-rosa-claro: #f48fb1;
+  --color-blanco-rosado: #fff0f6;
+  --color-error: #ff1744;
+  --sombra-rosa: 0 0 20px #ff69b4aa;
+  --sombra-profunda: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --fuente-principal: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-principal);
+  background: #ffe6f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* --- Contenedor principal tipo móvil --- */
+.phone-frame {
+  position: relative;
+  width: 360px;
+  min-height: 600px;
+  background: white;
+  border: 16px solid var(--color-rosa);
+  border-radius: 40px;
+  box-shadow: var(--sombra-rosa);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.app-container {
+  width: 320px;
+  padding: 20px;
+  position: relative;
+}
+
+/* --- Título y estructura --- */
+.fase-viaje {
+  width: 100%;
+}
+
+.titulo h1 {
+  color: var(--color-rosa-oscuro);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+}
+
+/* --- Formulario de viaje --- */
+.formulario {
+  background: var(--color-blanco-rosado);
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.2);
+  text-align: center;
+}
+
+.formulario input[type="text"],
+.input-tarjeta {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--color-rosa);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formulario input:focus,
+.input-tarjeta:focus {
+  border-color: var(--color-rosa-oscuro);
+  outline: none;
+  box-shadow: 0 0 8px #d81b60aa;
+}
+
+/* --- Tarjeta flotante --- */
+.formulario-tarjeta-flotante {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: 1000;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: var(--sombra-profunda);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: none;
+}
+
+.formulario-tarjeta-flotante.mostrar {
+  display: block;
+}
+
+.formulario-tarjeta-flotante.activo {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+/* --- Botones principales --- */
+.btn-primary,
+.btn-secondary,
+.btn-terciario {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--color-rosa-oscuro), var(--color-rosa-claro));
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, var(--color-rosa-claro), var(--color-rosa-oscuro));
+  transform: scale(1.03);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-primary:focus-visible {
+  animation: pulse 0.3s ease-in-out;
+  outline: none;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.btn-secondary {
+  background-color: var(--color-rosa-claro);
+  color: white;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-rosa-oscuro);
+  transform: scale(1.03);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+.btn-terciario {
+  background-color: #f8bbd0;
+  color: #880e4f;
+  flex: 1;
+}
+
+.btn-terciario:hover {
+  background-color: var(--color-rosa-claro);
+  color: white;
+}
+
+/* --- Modales --- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(216, 27, 96, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 20px;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: var(--sombra-rosa);
+  text-align: center;
+  color: #880e4f;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 15px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#btn-confirmar,
+#btn-confirmar-salir {
+  background: linear-gradient(90deg, var(--color-rosa-oscuro), var(--color-rosa-claro));
+  color: white;
+}
+
+#btn-confirmar:hover,
+#btn-confirmar-salir:hover {
+  background: linear-gradient(90deg, var(--color-rosa-claro), var(--color-rosa-oscuro));
+}
+
+#btn-modificar,
+#btn-cancelar-salir {
+  background: #cfd8dc;
+  color: #333;
+}
+
+#btn-modificar:hover,
+#btn-cancelar-salir:hover {
+  background: #b0bec5;
+}
+
+/* --- Selector método de pago --- */
+.metodo-pago-container {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.metodo-pago-container label {
+  display: block;
+  margin-bottom: 10px;
+  color: #ad1457;
+  font-weight: 600;
+}
+
+.opciones-pago {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opcion-pago {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.opcion-pago:hover {
+  background-color: #fce4ec;
+}
+
+.opcion-pago input[type="radio"] {
+  display: none;
+}
+
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-rosa);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.opcion-pago input[type="radio"]:checked + .radio-custom {
+  background-color: var(--color-rosa-oscuro);
+  border-color: var(--color-rosa-oscuro);
+}
+
+.radio-custom::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.opcion-pago input[type="radio"]:checked + .radio-custom::after {
+  opacity: 1;
+}
+
+/* --- Inputs tarjeta --- */
+#numero-tarjeta {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"><rect width="15" height="10" fill="%23d81b60" opacity="0.2"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 30px;
+  padding-right: 50px;
+}
+
+#cvv-tarjeta {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="%23d81b60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+  padding-right: 40px;
+}
+
+.fila-tarjeta {
+  display: flex;
+  gap: 10px;
+}
+
+.mitad {
+  flex: 1;
+}
+
+.botones-tarjeta {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#btn-solicitar {
+  margin-top: 15px;
+}
+
+/* Información adicional */
+.info-adicional {
+  background: #fce4ec;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 15px 0;
+  text-align: left;
+  color: #880e4f;
+  font-weight: 500;
+}
+
+/* --- Utilidades y animaciones --- */
+.oculto {
+  display: none !important;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.activo {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Inputs con error */
+.input-error {
+  border-color: var(--color-error) !important;
+  background-color: #ffebee;
+}
+
+.mensaje-error {
+  color: var(--color-error);
+  font-size: 0.8rem;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  text-align: left;
+  display: none;
+}
+
+/* --- Responsive --- */
+@media (max-width: 400px) {
+  .phone-frame {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .app-container {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+.toast-container {
+  position: absolute; /* Flota dentro del contenedor relativo */
+  top: 20px;           /* Ajusta según dónde quieras que aparezca */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast-message {
+  background: #f06292;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: var(--sombra-profunda);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: fadein 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

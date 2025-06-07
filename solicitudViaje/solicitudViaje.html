@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solicitud de Viaje - FEMME</title>
+  <link rel="stylesheet" href="solicitudViaje.css" />
+</head>
+
+<body>
+  <div class="phone-frame">
+    <div class="app-container">
+
+      <!-- Sección: Buscar viaje -->
+      <div id="buscar-viaje" class="fase-viaje activo">
+        <div class="titulo">
+          <h1>¡Bienvenida! ¿A dónde vamos?</h1>
+        </div>
+        
+        <div id="toast-container" class="toast-container"></div>
+
+        <form id="viaje-form" class="formulario activo">
+          <input id="origen" type="text" placeholder="Punto de origen" required />
+          <input id="destino" type="text" placeholder="Punto de destino" required />
+
+          <!-- Selector de método de pago -->
+          <div class="metodo-pago-container">
+            <label for="metodo-pago-efectivo">Método de pago:</label>
+            <div class="opciones-pago">
+              <label class="opcion-pago">
+                <input id="metodo-pago-efectivo" type="radio" name="metodo-pago" value="efectivo"/>
+                <span class="radio-custom"></span>
+                Efectivo
+              </label>
+              <label class="opcion-pago">
+                <input id="metodo-pago-tarjeta" type="radio" name="metodo-pago" value="tarjeta" />
+                <span class="radio-custom"></span>
+                Tarjeta crédito/débito
+              </label>
+            </div>
+          </div>
+
+          <!-- Formulario tarjeta (flotante y oculto por defecto) -->
+          <div class="formulario-tarjeta-flotante oculto" id="formulario-tarjeta">
+            <div class="datos-tarjeta">
+              <input type="text" placeholder="Número de tarjeta" class="input-tarjeta" id="numero-tarjeta" maxlength="19" autocomplete="off" />
+              <div id="error-numero" class="mensaje-error"></div>
+
+              <div class="fila-tarjeta">
+                <div style="flex: 1;">
+                  <input type="text" placeholder="MM/AA" class="input-tarjeta mitad" id="fecha-tarjeta" maxlength="5" />
+                  <div id="error-fecha" class="mensaje-error"></div>
+                </div>
+                <div style="flex: 1;">
+                  <input type="password" placeholder="CVV" class="input-tarjeta mitad" id="cvv-tarjeta" maxlength="3" />
+                  <div id="error-cvv" class="mensaje-error"></div>
+                </div>
+              </div>
+
+              <input type="text" placeholder="Nombre del titular" class="input-tarjeta" id="nombre-tarjeta" />
+              <div id="error-nombre" class="mensaje-error"></div>
+            </div>
+            <div class="botones-tarjeta">
+              <button type="button" id="cancelar-tarjeta" class="btn-terciario">Cancelar</button>
+              <button type="button" id="confirmar-tarjeta" class="btn-primary">Confirmar tarjeta</button>
+            </div>
+          </div>
+
+          <button type="submit" id="btn-solicitar" class="btn-primary">Solicitar viaje</button>
+          <button type="button" id="salir" class="btn-secondary">Salir</button>
+        </form>
+      </div>
+
+      <!-- Modal confirmación de viaje -->
+      <div id="confirmacion-modal" class="modal oculto">
+        <div class="modal-content">
+          <p id="modal-message"></p>
+          <div class="info-adicional">
+            <p id="info-pago"></p>
+          </div>
+          <div class="modal-buttons">
+            <button id="btn-modificar" class="btn-secondary">Modificar</button>
+            <button id="btn-confirmar" class="btn-primary">Confirmar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal salida -->
+      <div id="salir-modal" class="modal oculto">
+        <div class="modal-content">
+          <p>¿Estás segura que deseas salir? Serás redirigida al inicio de sesión.</p>
+          <div class="modal-buttons">
+            <button id="btn-cancelar-salir" class="btn-secondary">Cancelar</button>
+            <button id="btn-confirmar-salir" class="btn-terciario">Salir</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="solicitudViaje.js" defer></script>
+</body>
+
+</html>

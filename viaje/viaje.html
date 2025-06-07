@@ -1,0 +1,48 @@
+  <!DOCTYPE html>
+  <html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Viaje en curso - FEMME</title>
+    <link rel="stylesheet" href="viaje.css" />
+  </head>
+
+  <body>
+    <div class="phone-frame">
+      <div class="app-container">
+
+        <!-- Sección: Simulación de viaje -->
+        <div id="simulacion-viaje" class="fase-viaje">
+          <div class="mensaje-confirmacion">
+            <h2>¡Tu viaje ha sido aceptado por <span id="nombre-conductor">---</span>!</h2>
+            <div id="toast-container"></div>
+            <p id="mensaje-viaje"></p>
+
+            <p>Está llegando en un <span id="vehiculo">---</span>.</p>
+            <p><span id="tiempo-llegada">---</span></p>
+          </div>
+
+          <div id="map"></div>
+          <button id="cancelar-btn" class="btn btn-secondary">Cancelar viaje</button>
+
+          <div id="modal-cancelar" class="confirmacion-cancelacion">
+            <div class="modal-content">
+              <p>¿Estás segura de cancelar el viaje? La conductora ya está en camino.</p>
+              <div class="modal-buttons">
+                <button id="continuar-btn" class="btn btn-primary">Continuar con el viaje</button>
+                <button id="confirmar-cancelar-btn" class="btn btn-secondary cancelar">Sí, deseo cancelar viaje</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="viaje.js" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGHcIMjst4HV5SoeYPLLKEoXKx_ArPRzw" defer></script>
+  </body>
+
+  </html>
