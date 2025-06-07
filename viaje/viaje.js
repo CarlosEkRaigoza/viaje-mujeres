@@ -12,7 +12,7 @@ function showToast(message, type = "info") {
     success: "✅",
     error: "❌",
     warning: "⚠️",
-    info: "ℹ️"
+    info: "ℹ️",
   };
 
   toast.innerHTML = `${icons[type] || "ℹ️"} ${message}`;
@@ -35,6 +35,7 @@ const origen =
   localStorage.getItem("origen") || "UNIVERSIDAD MESOAMERICANA DE SAN AGUSTIN";
 const destino =
   localStorage.getItem("destino") || "Parque Zoológico del Centenario";
+const costo = localStorage.getItem("costo") || "0.00";
 
 // --- Inicializar simulación de viaje ---
 // Actualiza la interfaz con los datos del viaje y lanza el mapa
@@ -46,6 +47,10 @@ function initSimulacionViaje() {
   const vehiculoElement = document.getElementById("vehiculo");
   const tiempoLlegada = document.getElementById("tiempo-llegada");
   const mensajeViaje = document.getElementById("mensaje-viaje");
+  const costoElemento = document.getElementById("costo-viaje");
+  if (costoElemento) {
+    costoElemento.textContent = costo;
+  }
 
   if (nombreConductor && vehiculoElement && tiempoLlegada) {
     nombreConductor.textContent = conductor;

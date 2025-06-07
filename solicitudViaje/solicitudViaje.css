@@ -255,13 +255,13 @@ body {
 
 /* --- Selector método de pago --- */
 .metodo-pago-container {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
 .metodo-pago-container label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #ad1457;
   font-weight: 600;
 }
@@ -269,7 +269,7 @@ body {
 .opciones-pago {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 
 .opcion-pago {
@@ -454,4 +454,10 @@ body {
 @keyframes fadein {
   from { opacity: 0; transform: translateY(-20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+#costo-aproximado {
+  margin: 10px 0;
+  font-weight: bold;
+  color: #333;
 }

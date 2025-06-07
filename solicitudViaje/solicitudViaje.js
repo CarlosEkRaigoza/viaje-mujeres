@@ -17,6 +17,36 @@ const fechaTarjeta = document.getElementById("fecha-tarjeta");
 const cvvTarjeta = document.getElementById("cvv-tarjeta");
 const nombreTarjeta = document.getElementById("nombre-tarjeta");
 
+const inputOrigen = document.getElementById("origen");
+const inputDestino = document.getElementById("destino");
+const costoContainer = document.getElementById("costo-aproximado");
+
+// NUEVO: función que calcula un costo ficticio rápido
+function calcularCostoAproximado(origenText, destinoText) {
+  // Ejemplo simple: base $20 + $5 por cada palabra total en origen+destino
+  const palabrasOrigen = origenText.trim().split(/\s+/).length;
+  const palabrasDestino = destinoText.trim().split(/\s+/).length;
+  const costo = 20 + 5 * (palabrasOrigen + palabrasDestino);
+  return costo.toFixed(2);
+}
+
+// NUEVO: función para actualizar el costo en la UI
+function actualizarCosto() {
+  const origenVal = inputOrigen.value.trim();
+  const destinoVal = inputDestino.value.trim();
+
+  if (origenVal && destinoVal) {
+    const costo = calcularCostoAproximado(origenVal, destinoVal);
+    costoContainer.textContent = `Costo aproximado: $${costo}`;
+  } else {
+    costoContainer.textContent = "";
+  }
+}
+
+// Escuchar cambios en ambos inputs para actualizar el costo dinámicamente
+inputOrigen.addEventListener("input", actualizarCosto);
+inputDestino.addEventListener("input", actualizarCosto);
+
 // Mostrar formulario de tarjeta cuando se selecciona
 radioTarjeta.addEventListener("change", () => {
   if (radioTarjeta.checked) {
@@ -73,7 +103,7 @@ btnCancelarTarjeta.addEventListener("click", () => {
 
 // Máscara para número de tarjeta (formato 0000 0000 0000 0000)
 numeroTarjeta.addEventListener("input", (e) => {
-  let value = e.target.value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
+  let value = e.target.value.replace(/\s+/g, "").replace(/\D/gi, "");
   let formatted = "";
 
   for (let i = 0; i < value.length && i < 16; i++) {
@@ -89,7 +119,7 @@ numeroTarjeta.addEventListener("input", (e) => {
 
 // Máscara para fecha (MM/AA)
 fechaTarjeta.addEventListener("input", (e) => {
-  let value = e.target.value.replace(/[^0-9]/g, "");
+  let value = e.target.value.replace(/\D/g, "");
 
   if (value.length > 2) {
     value = value.substring(0, 2) + "/" + value.substring(2, 4);
@@ -289,6 +319,9 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
+  const costo = calcularCostoAproximado(origen, destino);
+  localStorage.setItem("costo", costo);
+
   // Mostrar información en el modal
   modalMessage.textContent = `¿Confirmas tu viaje de "${origen}" a "${destino}"?`;
 
@@ -298,7 +331,7 @@ form.addEventListener("submit", (e) => {
       ? "Efectivo"
       : "Tarjeta de crédito/débito (****" + numeroTarjeta.value.slice(-4) + ")";
 
-  infoPago.textContent = `Método de pago: ${metodoTexto}`;
+  infoPago.textContent = `Método de pago: ${metodoTexto} - Costo aproximado: $${costo}`;
 
   toggleModal(modal, true);
 });
