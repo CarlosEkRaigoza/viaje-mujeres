@@ -235,3 +235,46 @@ body {
   font-size: 0.95rem;
   font-weight: 500;
 }
+
+.modal-content {
+  background: #fff0f6;
+  border: 2px solid #f06292;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #880e4f;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.confirmacion-cancelacion {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}

@@ -5,8 +5,7 @@ function obtenerResumenViaje() {
     destino: localStorage.getItem("destino") || "Destino desconocido",
     duracion: localStorage.getItem("duracionViaje") || "-",
     costo: localStorage.getItem("costo") || "0.00",
-    conductor:
-      localStorage.getItem("nombreConductora") || "Conductora desconocida",
+    conductor: localStorage.getItem("nombreConductora") || "Conductora desconocida",
     modelo: localStorage.getItem("modeloVehiculo") || "Vehículo",
     color: localStorage.getItem("colorVehiculo") || "Color desconocido",
     placa: localStorage.getItem("placaVehiculo") || "Placa desconocida",
@@ -41,18 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
       : `Tarjeta de crédito/débito [****-${datos.ultimos4Tarjeta}]`;
 
   // Insertar los datos en el HTML
-  document.getElementById(
-    "info-ruta"
-  ).textContent = `${datos.origen} a ${datos.destino}`;
-  document.getElementById(
-    "info-tiempo"
-  ).textContent = `${duracionDoble} minutos`;
-  document.getElementById(
-    "info-pago"
-  ).textContent = `$${datos.costo} (${metodoPagoTexto})`;
-  document.getElementById(
-    "info-conductora"
-  ).textContent = `${datos.conductor} - ${datos.modelo} (${datos.color}) - Placa: ${datos.placa}`;
+  document.getElementById("info-ruta").textContent = `${datos.origen} a ${datos.destino}`;
+  document.getElementById("info-tiempo").textContent = `${duracionDoble} minutos`;
+  document.getElementById("info-pago").textContent = `$${datos.costo} (${metodoPagoTexto})`;
+  document.getElementById("info-conductora").textContent = `${datos.conductor} - ${datos.modelo} (${datos.color}) - Placa: ${datos.placa}`;
 
   // Calificación con estrellas
   const estrellas = document.querySelectorAll("#estrellas-calificacion span");
@@ -93,14 +84,22 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Volver al inicio con confirmación
-  document.getElementById("volver-inicio-btn").addEventListener("click", () => {
-    const confirmacion = confirm(
-      "¿Estás seguro de que deseas volver al inicio? Esta acción borrará los datos del viaje."
-    );
-    if (confirmacion) {
-      localStorage.clear();
-      window.location.href = "../solicitudViaje/solicitudViaje.html";
-    }
+  // Modal personalizado para "volver al inicio"
+  const volverInicioBtn = document.getElementById("volver-inicio-btn");
+  const modalVolver = document.getElementById("modal-volver-inicio");
+  const cancelarVolverBtn = document.getElementById("cancelar-volver-btn");
+  const confirmarVolverBtn = document.getElementById("confirmar-volver-btn");
+
+  volverInicioBtn.addEventListener("click", () => {
+    modalVolver.style.display = "flex";
+  });
+
+  cancelarVolverBtn.addEventListener("click", () => {
+    modalVolver.style.display = "none";
+  });
+
+  confirmarVolverBtn.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "../solicitudViaje/solicitudViaje.html"; // o index.html si es la raíz
   });
 });
