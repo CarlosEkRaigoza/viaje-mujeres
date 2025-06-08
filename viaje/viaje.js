@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Redirigir después de un tiempo adecuado
   setTimeout(() => {
     window.location.href = "../solicitudViaje/solicitudViaje.html";
-  }, 2500); // 2.5 segundos para que el usuario pueda leer el mensaje
+  }, 3000); // 3 segundos para que el usuario pueda leer el mensaje
 });
   // --- Mostrar/Ocultar detalles del viaje ---
   const btnDetalles = document.getElementById("btn-detalles");
