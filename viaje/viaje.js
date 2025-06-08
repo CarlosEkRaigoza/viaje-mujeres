@@ -22,15 +22,9 @@ function showToast(message, type = "info") {
 }
 
 // --- Datos del viaje ---
-// Variables con datos del conductor, vehículo y tiempo estimado
 const conductor = "María";
-const vehiculo = {
-  modelo: "Toyota Corolla",
-  color: "rosa",
-};
+const vehiculo = { modelo: "Toyota Corolla", color: "rosa" };
 const tiempoEstimadoMinutos = 7;
-
-// Obtener datos del viaje desde localStorage, con valores por defecto
 const origen =
   localStorage.getItem("origen") || "UNIVERSIDAD MESOAMERICANA DE SAN AGUSTIN";
 const destino =
@@ -125,7 +119,9 @@ function showMapError(message) {
 document.addEventListener("DOMContentLoaded", () => {
   const cancelarBtn = document.getElementById("cancelar-btn");
   const continuarBtn = document.getElementById("continuar-btn");
-  const confirmarCancelarBtn = document.getElementById("confirmar-cancelar-btn");
+  const confirmarCancelarBtn = document.getElementById(
+    "confirmar-cancelar-btn"
+  );
   const modalCancelar = document.getElementById("modal-cancelar");
   const simulacionViajeSection = document.getElementById("simulacion-viaje");
 
@@ -145,15 +141,65 @@ document.addEventListener("DOMContentLoaded", () => {
     showToast("Gracias por continuar tu viaje", "success");
   });
 
-  // Confirmar cancelación: ocultar modal, sección y redirigir
   confirmarCancelarBtn?.addEventListener("click", () => {
-    modalCancelar.classList.remove("confirmacion-visible");
-    simulacionViajeSection.classList.add("oculto");
+  modalCancelar.classList.remove("confirmacion-visible");
+  
+  // Mostrar mensaje de cancelación con estilo consistente
+  simulacionViajeSection.innerHTML = `
+    <div class="mensaje-confirmacion" style="text-align: center;">
+      <h2 style="color: #d81b60;">Viaje cancelado</h2>
+      <div class="spinner" style="border-left-color: #f48fb1;"></div>
+      <p style="color: #880e4f; margin-top: 20px;">Redirigiendo a la pantalla principal...</p>
+    </div>
+  `;
+  
+  // Mostrar toast de confirmación
+  showToast("Viaje cancelado con éxito", "success");
+  
+  // Redirigir después de un tiempo adecuado
+  setTimeout(() => {
+    window.location.href = "../solicitudViaje/solicitudViaje.html";
+  }, 2500); // 2.5 segundos para que el usuario pueda leer el mensaje
+});
+  // --- Mostrar/Ocultar detalles del viaje ---
+  const btnDetalles = document.getElementById("btn-detalles");
+  const labelDetalles = document.getElementById("label-detalles");
+  const btnCerrarLabel = document.getElementById("cerrar-label");
+  const btnCompartir = document.getElementById("compartir-label");
 
-    showToast("Has cancelado el viaje.", "warning");
+  btnDetalles?.addEventListener("click", () => {
+    labelDetalles.classList.remove("oculto"); // Mostrar detalles
+  });
 
-    setTimeout(() => {
-      window.location.href = "../solicitudViaje/solicitudViaje.html";
-    }, 1500);
+  btnCerrarLabel?.addEventListener("click", () => {
+    labelDetalles.classList.add("oculto"); // Ocultar detalles
+  });
+
+  btnCompartir?.addEventListener("click", async () => {
+    const texto =
+      document.getElementById("mensaje-viaje").textContent +
+      "\n" +
+      document.getElementById("vehiculo").parentElement.textContent +
+      "\n" +
+      document.getElementById("tiempo-llegada").textContent +
+      "\n" +
+      "Costo estimado: $" +
+      document.getElementById("costo-viaje").textContent;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Detalles del viaje",
+          text: texto,
+        });
+      } catch (err) {
+        showToast("No se pudo compartir: " + err.message, "error");
+      }
+    } else {
+      showToast(
+        "La función de compartir no está disponible en este dispositivo",
+        "warning"
+      );
+    }
   });
 });

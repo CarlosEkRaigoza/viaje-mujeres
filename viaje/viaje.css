@@ -368,3 +368,67 @@ body {
     transform: translateY(-20px);
   }
 }
+.label-flotante {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.detalles-botones {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.detalles-botones button {
+  flex: 1;
+}
+
+.oculto {
+  display: none;
+}
+
+/* Añade esto a tu CSS existente */
+.mensaje-confirmacion {
+  background: #fff0f6;
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.15);
+  margin-top: 20px;
+}
+
+.mensaje-confirmacion h2 {
+  color: #d81b60;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.mensaje-confirmacion p {
+  color: #880e4f;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Animación del spinner con tus colores */
+.spinner {
+  border: 4px solid rgba(216, 27, 96, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #f48fb1;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
