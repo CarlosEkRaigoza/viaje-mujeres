@@ -35,7 +35,7 @@ body {
 /* --- Mensaje de confirmación del viaje --- */
 .mensaje-confirmacion {
   background: #fff0f6;
-  padding: 30px 20px;
+  padding: 20px 15px;
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(216, 27, 96, 0.15);
   margin-top: 20px;
@@ -59,13 +59,15 @@ body {
   border-radius: 12px;
   padding: 15px;
   margin: 20px 0;
+  max-height: 220px; /* ajusta según el espacio que quieras */
+  overflow-y: auto;
 }
 
 .detalle-resumen {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 12px 0;
+  gap: 10px;
+  padding: 8px 0;
   border-bottom: 1px solid #ffcdd2;
 }
 
@@ -87,13 +89,13 @@ body {
 .detalle-resumen h3 {
   color: #d81b60;
   margin: 0 0 5px 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .detalle-resumen p {
   color: #880e4f;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 /* --- Botón volver --- */
@@ -143,4 +145,78 @@ body {
     width: 90%;
     padding: 15px;
   }
+}
+
+.toast {
+  padding: 10px 16px;
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: 500;
+  animation: fadeInOut 3s forwards;
+}
+
+.toast.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+/* Contenedor de calificación */
+.calificacion-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Estilo para el label */
+.calificacion-container label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #d81b60;
+  margin-bottom: 10px;
+}
+
+/* Estrellas centradas y grandes */
+.estrellas {
+  font-size: 2.2rem;
+  color: #ccc;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.estrellas span:hover,
+.estrellas span.hover,
+.estrellas span.seleccionado {
+  color: #d81b60;
+  transform: scale(1.2);
+  transition: transform 0.2s, color 0.2s;
+}
+
+/* Mensaje debajo */
+.mensaje-calificacion {
+  margin-top: 12px;
+  color: #880e4f;
+  font-size: 0.95rem;
+  font-weight: 500;
 }

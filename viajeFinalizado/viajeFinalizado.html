@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resumen del Viaje - FEMME</title>
   <link rel="stylesheet" href="viajeFinalizado.css">
 </head>
+
 <body>
   <div class="phone-frame">
     <div class="app-container">
       <div class="mensaje-confirmacion">
         <h2>¡Viaje completado con éxito!</h2>
-        
+
+        <div class="calificacion-container">
+          <label for="estrellas-calificacion">Califica tu viaje:</label>
+          <div id="estrellas-calificacion" class="estrellas">
+            <span data-valor="1">☆</span>
+            <span data-valor="2">☆</span>
+            <span data-valor="3">☆</span>
+            <span data-valor="4">☆</span>
+            <span data-valor="5">☆</span>
+          </div>
+          <div id="mensaje-calificacion" class="mensaje-calificacion"></div>
+        </div>
+
         <div class="resumen-viaje">
           <div class="detalle-resumen">
             <span class="icono">🛣️</span>
             <div>
               <h3>Ruta</h3>
-              <p>${origen} a ${destino}</p>
+              <p id="info-ruta"></p>
             </div>
           </div>
-          
+
           <div class="detalle-resumen">
             <span class="icono">⏱️</span>
             <div>
-              <h3>Tiempo</h3>
-              <p>${tiempoEstimadoMinutos} minutos</p>
+              <h3>Duración</h3>
+              <p id="info-tiempo"></p>
             </div>
           </div>
-          
+
           <div class="detalle-resumen">
             <span class="icono">💳</span>
             <div>
               <h3>Pago</h3>
-              <p>$${costo} (Tarjeta terminada en 1234)</p>
+              <p id="info-pago"></p>
             </div>
           </div>
-          
+
           <div class="detalle-resumen">
             <span class="icono">👩</span>
             <div>
               <h3>Conductora</h3>
-              <p>${conductor} - ${vehiculo.modelo} (${vehiculo.color})</p>
+              <p id="info-conductora"></p>
             </div>
           </div>
         </div>
-        
+
         <button id="volver-inicio-btn" class="btn btn-primary">Volver al inicio</button>
       </div>
     </div>
   </div>
 
-  <script>
-    document.getElementById('volver-inicio-btn').addEventListener('click', () => {
-      window.location.href = "../solicitudViaje/solicitudViaje.html";
-    });
-  </script>
+  <div id="toast-container"></div>
+  <script src="viajeFinalizado.js"></script>
 </body>
+
 </html>

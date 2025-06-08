@@ -23,13 +23,17 @@ function showToast(message, type = "info") {
 
 // --- Datos del viaje ---
 const conductor = "María";
-const vehiculo = { modelo: "Toyota Corolla", color: "rosa" };
+const vehiculo = { modelo: "Toyota Corolla", color: "rosa", placa: "ABC-123" };
 const tiempoEstimadoMinutos = 7;
-const origen =
-  localStorage.getItem("origen") || "UNIVERSIDAD MESOAMERICANA DE SAN AGUSTIN";
-const destino =
-  localStorage.getItem("destino") || "Parque Zoológico del Centenario";
+const origen = localStorage.getItem("origen") || "UNIVERSIDAD MESOAMERICANA DE SAN AGUSTIN";
+const destino = localStorage.getItem("destino") || "Parque Zoológico del Centenario";
 const costo = localStorage.getItem("costo") || "0.00";
+
+localStorage.setItem("nombreConductora", conductor);
+localStorage.setItem("modeloVehiculo", vehiculo.modelo);
+localStorage.setItem("colorVehiculo", vehiculo.color);
+localStorage.setItem("placaVehiculo", vehiculo.placa);
+localStorage.setItem("duracionViaje", tiempoEstimadoMinutos);
 
 // --- Inicializar simulación de viaje ---
 // Actualiza la interfaz con los datos del viaje y lanza el mapa
@@ -48,8 +52,8 @@ function initSimulacionViaje() {
 
   if (nombreConductor && vehiculoElement && tiempoLlegada) {
     nombreConductor.textContent = conductor;
-    vehiculoElement.textContent = `${vehiculo.modelo} (${vehiculo.color})`;
-    tiempoLlegada.textContent = `Llegará en aproximadamente ${tiempoEstimadoMinutos} minutos.`;
+    vehiculoElement.textContent = `${vehiculo.modelo} (${vehiculo.color}) - Placa: ${vehiculo.placa}`;
+    tiempoLlegada.textContent = `Llegará a tu ubicación en aproximadamente ${tiempoEstimadoMinutos} minutos.`;
   }
 
   if (mensajeViaje) {
