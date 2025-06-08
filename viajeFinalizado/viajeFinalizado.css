@@ -1,0 +1,494 @@
+/* --- Estilos base y estructura --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffe6f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.phone-frame {
+  position: relative;
+  width: 360px;
+  min-height: 600px;
+  background: white;
+  border: 16px solid #ff69b4;
+  border-radius: 40px;
+  box-shadow: 0 0 20px #ff69b4aa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.app-container {
+  width: 320px;
+  padding: 20px;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  width: 80px;
+  margin-bottom: 8px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.logo-container h1 {
+  color: #d81b60;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+/* --- Formularios (fase buscar) --- */
+.formulario {
+  display: none;
+  background: #fff0f6;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.2);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.formulario.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.formulario h2 {
+  color: #ad1457;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.formulario input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formulario input:focus {
+  border-color: #d81b60;
+  outline: none;
+  box-shadow: 0 0 8px #d81b60aa;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+/* --- Botón principal --- */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #d81b60, #f48fb1);
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #f48fb1, #d81b60);
+  transform: scale(1.03);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  background-color: #f48fb1;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: #d81b60;
+  transform: scale(1.03);
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* --- Simulación de viaje --- */
+.simulacion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #fff0f6;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.15);
+}
+
+.simulacion-info {
+  font-size: 0.95rem;
+  color: #880e4f;
+  background: #fce4ec;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+#map {
+  width: 100%;
+  height: 250px;
+  border: 2px solid #ff69b4;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.simulacion-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-cancelar {
+  background: #ff1744;
+  border: none;
+  color: white;
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background: #d50000;
+}
+
+/* Confirmación cancelación */
+.confirmacion-cancelacion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4); /* Fondo oscuro */
+  display: none; /* Oculto por defecto */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirmacion-cancelacion.confirmacion-visible {
+  display: flex; /* visible si tiene esta clase */
+}
+
+.modal-content {
+  background: #fff0f6;
+  border: 2px solid #f06292;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #880e4f;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.confirmacion-cancelacion p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.confirmacion-cancelacion button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+#confirmar-cancelar-btn {
+  background: #d81b60;
+  color: white;
+}
+
+#continuar-btn {
+  background: #cfd8dc;
+  color: #333;
+}
+
+/* --- Generalidades --- */
+.switch-text {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #ad1457;
+}
+
+.switch-text a {
+  color: #d81b60;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.switch-text a:hover {
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 400px) {
+  .phone-frame {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .app-container {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+/* TOAST container y estilos generales */
+#toast-container {
+  position: absolute; /* Flota dentro del contenedor relativo */
+  top: 20px; /* Ajusta según dónde quieras que aparezca */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.toast-message {
+  min-width: 250px;
+  max-width: 90vw;
+  padding: 12px 18px;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadein 0.3s ease, fadeout 0.5s ease 3.5s;
+  text-align: center;
+}
+
+/* Tipos de toast */
+.toast-message.success {
+  background-color: #4caf50;
+}
+
+.toast-message.error {
+  background-color: #f44336;
+}
+
+.toast-message.warning {
+  background-color: #ff9800;
+}
+
+.toast-message.info {
+  background-color: #2196f3;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+.label-flotante {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.detalles-botones {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.detalles-botones button {
+  flex: 1;
+}
+
+.oculto {
+  display: none;
+}
+
+/* Añade esto a tu CSS existente */
+.mensaje-confirmacion {
+  background: #fff0f6;
+  padding: 30px 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(216, 27, 96, 0.15);
+  margin-top: 20px;
+}
+
+.mensaje-confirmacion h2 {
+  color: #d81b60;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.mensaje-confirmacion p {
+  color: #880e4f;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Animación del spinner con tus colores */
+.spinner {
+  border: 4px solid rgba(216, 27, 96, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #f48fb1;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Estilos para el resumen del viaje */
+.resumen-viaje {
+  background: #fce4ec;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.detalle-resumen {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ffcdd2;
+}
+
+.detalle-resumen:last-child {
+  border-bottom: none;
+}
+
+.detalle-resumen .icono {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: #f8bbd0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detalle-resumen h3 {
+  color: #d81b60;
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+}
+
+.detalle-resumen p {
+  color: #880e4f;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Botón de volver */
+#volver-inicio-btn {
+  margin-top: 20px;
+}
+
+.icono-exito {
+  font-size: 3rem;
+  color: #4caf50;
+  margin: 20px 0;
+}
+
+.error-resumen {
+  color: #d81b60;
+  text-align: center;
+  font-weight: bold;
+}

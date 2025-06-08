@@ -432,3 +432,15 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* Contenedor de botones para viaje en curso */
+.botones-viaje {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.botones-viaje .btn {
+  flex: 1; /* Hace que ambos botones ocupen el mismo espacio */
+  margin-top: 0 !important; /* Elimina cualquier margen superior */
+  padding: 14px; /* Mantiene el padding consistente */
+}

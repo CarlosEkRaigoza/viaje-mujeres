@@ -142,25 +142,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   confirmarCancelarBtn?.addEventListener("click", () => {
-  modalCancelar.classList.remove("confirmacion-visible");
-  
-  // Mostrar mensaje de cancelación con estilo consistente
-  simulacionViajeSection.innerHTML = `
+    modalCancelar.classList.remove("confirmacion-visible");
+
+    // Mostrar mensaje de cancelación con estilo consistente
+    simulacionViajeSection.innerHTML = `
     <div class="mensaje-confirmacion" style="text-align: center;">
       <h2 style="color: #d81b60;">Viaje cancelado</h2>
       <div class="spinner" style="border-left-color: #f48fb1;"></div>
       <p style="color: #880e4f; margin-top: 20px;">Redirigiendo a la pantalla principal...</p>
     </div>
   `;
-  
-  // Mostrar toast de confirmación
-  showToast("Viaje cancelado con éxito", "success");
-  
-  // Redirigir después de un tiempo adecuado
-  setTimeout(() => {
-    window.location.href = "../solicitudViaje/solicitudViaje.html";
-  }, 3000); // 3 segundos para que el usuario pueda leer el mensaje
-});
+
+    // Mostrar toast de confirmación
+    showToast("Viaje cancelado con éxito", "success");
+
+    // Redirigir después de un tiempo adecuado
+    setTimeout(() => {
+      window.location.href = "../solicitudViaje/solicitudViaje.html";
+    }, 3000); // 3 segundos para que el usuario pueda leer el mensaje
+  });
   // --- Mostrar/Ocultar detalles del viaje ---
   const btnDetalles = document.getElementById("btn-detalles");
   const labelDetalles = document.getElementById("label-detalles");
@@ -201,5 +201,44 @@ document.addEventListener("DOMContentLoaded", () => {
         "warning"
       );
     }
+  });
+
+  // --- Finalizar viaje ---
+  const finalizarBtn = document.getElementById("finalizar-btn");
+  const modalFinalizar = document.getElementById("modal-finalizar");
+  const continuarViajeBtn = document.getElementById("continuar-viaje-btn");
+  const confirmarFinalizarBtn = document.getElementById(
+    "confirmar-finalizar-btn"
+  );
+
+  // Mostrar modal al presionar finalizar
+  finalizarBtn?.addEventListener("click", () => {
+    modalFinalizar.classList.add("confirmacion-visible");
+  });
+
+  // Ocultar modal si se decide continuar
+  continuarViajeBtn?.addEventListener("click", () => {
+    modalFinalizar.classList.remove("confirmacion-visible");
+    showToast("Continúa tu viaje con seguridad", "info");
+  });
+
+  // Confirmar finalización: mostrar pantalla de resumen
+  confirmarFinalizarBtn?.addEventListener("click", () => {
+    modalFinalizar.classList.remove("confirmacion-visible");
+
+    // Mostrar resumen antes de redirigir
+    simulacionViajeSection.innerHTML = `
+    <div class="mensaje-confirmacion">
+      <div style="font-size: 3rem; color: #4caf50; margin: 20px 0;">✓</div>
+      <h2>¡Viaje completado!</h2>
+      <p>Preparando resumen de tu viaje...</p>
+      <div class="spinner"></div>
+    </div>
+  `;
+
+    // Redirigir después de 2 segundos
+    setTimeout(() => {
+      window.location.href = "../viajeFinalizado/viajeFinalizado.html";
+    }, 2000);
   });
 });

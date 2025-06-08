@@ -38,8 +38,11 @@
         <!-- Mapa -->
         <div id="map" style="margin-top: 16px;"></div>
 
-        <!-- Botón de cancelar viaje -->
-        <button id="cancelar-btn" class="btn btn-secondary">Cancelar viaje</button>
+        <!-- Reemplaza los botones actuales por este contenedor -->
+        <div class="botones-viaje">
+          <button id="cancelar-btn" class="btn btn-secondary">Cancelar viaje</button>
+          <button id="finalizar-btn" class="btn btn-primary">Finalizar viaje</button>
+        </div>
 
         <!-- Modal de confirmación de cancelación -->
         <div id="modal-cancelar" class="confirmacion-cancelacion">
@@ -48,6 +51,17 @@
             <div class="modal-buttons">
               <button id="continuar-btn" class="btn btn-primary">Continuar con el viaje</button>
               <button id="confirmar-cancelar-btn" class="btn btn-secondary cancelar">Sí, deseo cancelar viaje</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal de confirmación de finalización -->
+        <div id="modal-finalizar" class="confirmacion-cancelacion">
+          <div class="modal-content">
+            <p>¿Has llegado a tu destino y deseas finalizar el viaje?</p>
+            <div class="modal-buttons">
+              <button id="continuar-viaje-btn" class="btn btn-secondary">Continuar viaje</button>
+              <button id="confirmar-finalizar-btn" class="btn btn-primary">Sí, finalizar viaje</button>
             </div>
           </div>
         </div>
