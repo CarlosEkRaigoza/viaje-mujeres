@@ -15,9 +15,10 @@ body {
 
 /* Simula pantalla teléfono */
 .phone-frame {
-  position: relative; /* necesario para posicionar los toasts relativos */
-  width: 360px;
-  min-height: 600px;
+  position: relative;
+  width: 90vw;
+  max-width: 360px;
+  min-height: 80vh;
   background: white;
   border: 16px solid #ff69b4;
   border-radius: 40px;
@@ -30,7 +31,8 @@ body {
 
 /* Contenedor app */
 .app-container {
-  width: 320px;
+  width: 90%;
+  max-width: 320px;
   padding: 20px;
 }
 
@@ -89,6 +91,8 @@ body {
   border-radius: 10px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .formulario input:focus {
@@ -142,6 +146,18 @@ body {
 }
 
 /* Responsividad para pantallas pequeñas */
+@media (max-width: 600px) {
+  .phone-frame {
+    width: 95vw;
+    min-height: auto;
+    border-radius: 30px;
+  }
+  .app-container {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
 @media (max-width: 400px) {
   .phone-frame {
     width: 100vw;

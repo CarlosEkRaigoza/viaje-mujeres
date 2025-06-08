@@ -26,7 +26,8 @@ body {
 /* --- Contenedor principal tipo móvil --- */
 .phone-frame {
   position: relative;
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
   min-height: 600px;
   background: white;
   border: 16px solid var(--color-rosa);
@@ -54,7 +55,7 @@ body {
   font-weight: 700;
   text-align: center;
   margin-bottom: 25px;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 /* --- Formulario de viaje --- */
@@ -218,6 +219,7 @@ body {
   display: flex;
   justify-content: space-around;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .modal-buttons button {
@@ -411,6 +413,20 @@ body {
 }
 
 /* --- Responsive --- */
+@media (min-width: 401px) and (max-width: 768px) {
+  .phone-frame {
+    width: 90vw;
+    height: auto;
+    border-radius: 20px;
+    border: 8px solid var(--color-rosa);
+  }
+
+  .app-container {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
 @media (max-width: 400px) {
   .phone-frame {
     width: 100vw;
