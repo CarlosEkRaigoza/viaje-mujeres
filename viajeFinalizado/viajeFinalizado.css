@@ -147,19 +147,34 @@ body {
   }
 }
 
+#toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none; 
+}
+
 .toast {
-  padding: 10px 16px;
-  margin-top: 10px;
-  border-radius: 8px;
-  background-color: #f0f0f0;
-  color: #333;
-  font-weight: 500;
+  background-color: #f8bbd0;
+  color: #880e4f;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 6px 12px rgba(216, 27, 96, 0.3);
   animation: fadeInOut 3s forwards;
+  pointer-events: all;
 }
 
 .toast.success {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #f8bbd0 !important;  /* fuerza el rosa */
+  color: #880e4f !important;
 }
 
 @keyframes fadeInOut {

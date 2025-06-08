@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Calificación con estrellas
   const estrellas = document.querySelectorAll("#estrellas-calificacion span");
-  const mensajeCalificacion = document.getElementById("mensaje-calificacion");
   let calificacionSeleccionada = 0;
 
   estrellas.forEach((estrella) => {
@@ -73,7 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
     estrella.addEventListener("click", () => {
       calificacionSeleccionada = Number(estrella.getAttribute("data-valor"));
       actualizarEstrellas(calificacionSeleccionada);
-      mensajeCalificacion.textContent = `Gracias por calificar con ${calificacionSeleccionada} estrella(s).`;
+      showToast(
+        `Gracias por calificar con ${calificacionSeleccionada} estrella(s).`,
+        "success"
+      );
     });
   });
 
