@@ -125,9 +125,7 @@ function showMapError(message) {
 document.addEventListener("DOMContentLoaded", () => {
   const cancelarBtn = document.getElementById("cancelar-btn");
   const continuarBtn = document.getElementById("continuar-btn");
-  const confirmarCancelarBtn = document.getElementById(
-    "confirmar-cancelar-btn"
-  );
+  const confirmarCancelarBtn = document.getElementById("confirmar-cancelar-btn");
   const modalCancelar = document.getElementById("modal-cancelar");
   const simulacionViajeSection = document.getElementById("simulacion-viaje");
 
