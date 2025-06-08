@@ -233,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mostrar resumen antes de redirigir
     simulacionViajeSection.innerHTML = `
     <div class="mensaje-confirmacion">
-      <div style="font-size: 3rem; color: #4caf50; margin: 20px 0;">✓</div>
       <h2>¡Viaje completado!</h2>
       <p>Preparando resumen de tu viaje...</p>
       <div class="spinner"></div>

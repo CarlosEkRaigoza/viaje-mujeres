@@ -94,7 +94,7 @@ btnCancelarTarjeta.addEventListener("click", () => {
   if (!metodoSeleccionado) {
     btnSolicitar.disabled = true;
     showToast("Por favor selecciona un método de pago.");
-  } else if (metodoSeleccionado.value === "efectivo") {
+  } else if (metodoSeleccionado.value === "Efectivo") {
     btnSolicitar.disabled = false;
   } else {
     btnSolicitar.disabled = true;
@@ -327,7 +327,7 @@ form.addEventListener("submit", (e) => {
 
   // Mostrar método de pago seleccionado
   const metodoTexto =
-    metodoPago === "efectivo"
+    metodoPago === "Efectivo"
       ? "Efectivo"
       : "Tarjeta de crédito/débito (****" + numeroTarjeta.value.slice(-4) + ")";
 

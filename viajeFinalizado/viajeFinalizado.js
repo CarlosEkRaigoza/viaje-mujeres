@@ -10,6 +10,7 @@ function obtenerResumenViaje() {
     modelo: localStorage.getItem("modeloVehiculo") || "Vehículo",
     color: localStorage.getItem("colorVehiculo") || "Color desconocido",
     placa: localStorage.getItem("placaVehiculo") || "Placa desconocida",
+    metodoPago: localStorage.getItem("metodoPago") || "Efectivo",
   };
 }
 
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ).textContent = `${duracionDoble} minutos`;
   document.getElementById(
     "info-pago"
-  ).textContent = `$${datos.costo} (Tarjeta terminada en 1234)`;
+  ).textContent = `$${datos.costo} (${datos.metodoPago})`;
   document.getElementById(
     "info-conductora"
   ).textContent = `${datos.conductor} - ${datos.modelo} (${datos.color}) - Placa: ${datos.placa}`;
