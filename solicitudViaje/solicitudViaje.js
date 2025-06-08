@@ -94,7 +94,7 @@ btnCancelarTarjeta.addEventListener("click", () => {
   if (!metodoSeleccionado) {
     btnSolicitar.disabled = true;
     showToast("Por favor selecciona un método de pago.");
-  } else if (metodoSeleccionado.value === "Efectivo") {
+  } else if (metodoSeleccionado.value === "efectivo") {
     btnSolicitar.disabled = false;
   } else {
     btnSolicitar.disabled = true;
@@ -327,7 +327,7 @@ form.addEventListener("submit", (e) => {
 
   // Mostrar método de pago seleccionado
   const metodoTexto =
-    metodoPago === "Efectivo"
+    metodoPago === "efectivo"
       ? "Efectivo"
       : "Tarjeta de crédito/débito (****" + numeroTarjeta.value.slice(-4) + ")";
 
@@ -347,6 +347,11 @@ btnConfirmar.addEventListener("click", () => {
   localStorage.setItem("origen", origen);
   localStorage.setItem("destino", destino);
   localStorage.setItem("metodoPago", metodoPago);
+  if (metodoPago === "tarjeta") {
+  const ultimos4 = numeroTarjeta.value.replace(/\s+/g, "").slice(-4);
+  localStorage.setItem("ultimos4Tarjeta", ultimos4);
+}
+
   // Redirigir a la página de viaje en curso
   window.location.href = "../viaje/viaje.html";
 });

@@ -25,9 +25,13 @@ function showToast(message, type = "info") {
 const conductor = "María";
 const vehiculo = { modelo: "Toyota Corolla", color: "rosa", placa: "ABC-123" };
 const tiempoEstimadoMinutos = 7;
-const origen = localStorage.getItem("origen") || "UNIVERSIDAD MESOAMERICANA DE SAN AGUSTIN";
-const destino = localStorage.getItem("destino") || "Parque Zoológico del Centenario";
+const origen =
+  localStorage.getItem("origen") || "UNIVERSIDAD MESOAMERICANA DE SAN AGUSTIN";
+const destino =
+  localStorage.getItem("destino") || "Parque Zoológico del Centenario";
 const costo = localStorage.getItem("costo") || "0.00";
+const metodoPago = localStorage.getItem("metodoPago") || "Efectivo";
+const ultimos4Tarjeta = localStorage.getItem("ultimos4Tarjeta") || "N/A";
 
 localStorage.setItem("nombreConductora", conductor);
 localStorage.setItem("modeloVehiculo", vehiculo.modelo);
@@ -46,6 +50,14 @@ function initSimulacionViaje() {
   const tiempoLlegada = document.getElementById("tiempo-llegada");
   const mensajeViaje = document.getElementById("mensaje-viaje");
   const costoElemento = document.getElementById("costo-viaje");
+  const metodoPagoElemento = document.getElementById("detalle-metodo-pago");
+  if (metodoPagoElemento) {
+    metodoPagoElemento.textContent =
+      metodoPago === "Tarjeta"
+        ? `Tarjeta terminación ${ultimos4Tarjeta}`
+        : metodoPago;
+  }
+
   if (costoElemento) {
     costoElemento.textContent = costo;
   }
@@ -91,6 +103,26 @@ window.initMap = function () {
       (result, status) => {
         if (status === "OK") {
           directionsRenderer.setDirections(result);
+          // Obtener coordenadas de origen y destino desde la respuesta
+          const route = result.routes[0].legs[0];
+          const startLocation = route.start_location;
+          const endLocation = route.end_location;
+
+          // Agregar marcador de origen
+          new google.maps.Marker({
+            position: startLocation,
+            map: map,
+            label: "🟢",
+            title: "Origen",
+          });
+
+          // Agregar marcador de destino
+          new google.maps.Marker({
+            position: endLocation,
+            map: map,
+            label: "🏁",
+            title: "Destino",
+          });
         } else if (status === "ZERO_RESULTS") {
           showToast(
             "No se encontró ruta para el origen o destino ingresados. Por favor, verifica las direcciones."
@@ -188,7 +220,12 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("tiempo-llegada").textContent +
       "\n" +
       "Costo estimado: $" +
-      document.getElementById("costo-viaje").textContent;
+      document.getElementById("costo-viaje").textContent +
+      "\n" +
+      "Método de pago: " +
+      (metodoPago === "Tarjeta"
+        ? `Tarjeta terminación ${ultimos4Tarjeta}`
+        : metodoPago);
 
     if (navigator.share) {
       try {

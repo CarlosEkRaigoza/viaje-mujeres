@@ -11,6 +11,7 @@ function obtenerResumenViaje() {
     color: localStorage.getItem("colorVehiculo") || "Color desconocido",
     placa: localStorage.getItem("placaVehiculo") || "Placa desconocida",
     metodoPago: localStorage.getItem("metodoPago") || "Efectivo",
+    ultimos4Tarjeta: localStorage.getItem("ultimos4Tarjeta") || "N/A",
   };
 }
 
@@ -33,6 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const duracionDoble = Number(datos.duracion) * 2;
 
+  const metodoPagoTexto =
+    datos.metodoPago === "Efectivo" ||
+    datos.ultimos4Tarjeta === "N/A"
+      ? "Efectivo"
+      : `Tarjeta de crédito/débito (****${datos.ultimos4Tarjeta})`;
+
   // Insertar los datos en el HTML
   document.getElementById(
     "info-ruta"
@@ -42,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ).textContent = `${duracionDoble} minutos`;
   document.getElementById(
     "info-pago"
-  ).textContent = `$${datos.costo} (${datos.metodoPago})`;
+  ).textContent = `$${datos.costo} (${metodoPagoTexto})`;
   document.getElementById(
     "info-conductora"
   ).textContent = `${datos.conductor} - ${datos.modelo} (${datos.color}) - Placa: ${datos.placa}`;
@@ -54,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
   estrellas.forEach((estrella) => {
     estrella.addEventListener("mouseover", () => {
       const valor = Number(estrella.getAttribute("data-valor"));
-      // resaltar hasta el hover
       estrellas.forEach((s) =>
         s.classList.toggle(
           "hover",
@@ -64,9 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     estrella.addEventListener("mouseout", () => {
-      // quitar hover
       estrellas.forEach((s) => s.classList.remove("hover"));
-      // volver a mostrar calificación seleccionada
       actualizarEstrellas(calificacionSeleccionada);
     });
 
@@ -89,9 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Volver al inicio
+  // Volver al inicio con confirmación
   document.getElementById("volver-inicio-btn").addEventListener("click", () => {
-    localStorage.clear();
-    window.location.href = "../solicitudViaje/solicitudViaje.html";
+    const confirmacion = confirm(
+      "¿Estás seguro de que deseas volver al inicio? Esta acción borrará los datos del viaje."
+    );
+    if (confirmacion) {
+      localStorage.clear();
+      window.location.href = "../solicitudViaje/solicitudViaje.html";
+    }
   });
 });
