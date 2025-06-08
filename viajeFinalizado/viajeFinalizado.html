@@ -63,6 +63,8 @@
         </div>
 
         <button id="volver-inicio-btn" class="btn btn-primary">Volver al inicio</button>
+        <button id="btn-comentario" class="btn btn-secondary">Dejar un comentario a la conductora</button>
+
       </div>
       <div id="modal-volver-inicio" class="confirmacion-cancelacion">
         <div class="modal-content">
@@ -73,6 +75,18 @@
           </div>
         </div>
       </div>
+
+      <div id="comentario-container" class="comentario-container oculto">
+        <div class="comentario-modal-content">
+          <label for="comentario-texto">Comentario:</label>
+          <textarea id="comentario-texto" rows="3" placeholder="Escribe tu comentario..."></textarea>
+          <div class="comentario-buttons">
+            <button id="cancelar-comentario" class="btn btn-tertiary">Cancelar</button>
+            <button id="enviar-comentario" class="btn btn-tertiary">Enviar comentario</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 

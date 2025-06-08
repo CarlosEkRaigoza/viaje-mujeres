@@ -102,4 +102,34 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.clear();
     window.location.href = "../solicitudViaje/solicitudViaje.html"; // o index.html si es la raíz
   });
+
+  // Comentario a la conductora
+const btnComentario = document.getElementById("btn-comentario");
+const comentarioContainer = document.getElementById("comentario-container");
+const cancelarComentario = document.getElementById("cancelar-comentario");
+const enviarComentario = document.getElementById("enviar-comentario");
+const comentarioTexto = document.getElementById("comentario-texto");
+
+btnComentario.addEventListener("click", () => {
+  comentarioContainer.classList.remove("oculto");
+  comentarioTexto.focus();
+});
+
+cancelarComentario.addEventListener("click", () => {
+  comentarioTexto.value = "";
+  comentarioContainer.classList.add("oculto");
+});
+
+enviarComentario.addEventListener("click", () => {
+  const texto = comentarioTexto.value.trim();
+  if (texto === "") {
+    showToast("Por favor escribe un comentario.", "error");
+    return;
+  }
+
+  showToast("Comentario enviado ❤️", "success");
+  comentarioTexto.value = "";
+  comentarioContainer.classList.add("oculto");
+});
+
 });
