@@ -103,26 +103,6 @@ window.initMap = function () {
       (result, status) => {
         if (status === "OK") {
           directionsRenderer.setDirections(result);
-          // Obtener coordenadas de origen y destino desde la respuesta
-          const route = result.routes[0].legs[0];
-          const startLocation = route.start_location;
-          const endLocation = route.end_location;
-
-          // Agregar marcador de origen
-          new google.maps.Marker({
-            position: startLocation,
-            map: map,
-            label: "🟢",
-            title: "Origen",
-          });
-
-          // Agregar marcador de destino
-          new google.maps.Marker({
-            position: endLocation,
-            map: map,
-            label: "🏁",
-            title: "Destino",
-          });
         } else if (status === "ZERO_RESULTS") {
           showToast(
             "No se encontró ruta para el origen o destino ingresados. Por favor, verifica las direcciones."

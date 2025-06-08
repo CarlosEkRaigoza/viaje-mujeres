@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     datos.metodoPago === "Efectivo" ||
     datos.ultimos4Tarjeta === "N/A"
       ? "Efectivo"
-      : `Tarjeta de crédito/débito (****${datos.ultimos4Tarjeta})`;
+      : `Tarjeta de crédito/débito [****-${datos.ultimos4Tarjeta}]`;
 
   // Insertar los datos en el HTML
   document.getElementById(
