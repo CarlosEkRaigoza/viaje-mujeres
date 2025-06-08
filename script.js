@@ -118,7 +118,7 @@ loginForm.addEventListener('submit', (e) => {
   } else {
     showToast('Has iniciado sesión correctamente');
     setTimeout(() => {
-      window.location.href = '/viaje-mujeres/solicitudViaje/solicitudViaje.html';
+      window.location.href = 'solicitudViaje/solicitudViaje.html';
     }, 1500);
   }
 });
