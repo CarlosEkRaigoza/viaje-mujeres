@@ -348,7 +348,7 @@ btnConfirmar.addEventListener("click", () => {
   localStorage.setItem("destino", destino);
   localStorage.setItem("metodoPago", metodoPago);
   // Redirigir a la página de viaje en curso
-  window.location.href = "/viaje/viaje.html";
+  window.location.href = "../viaje/viaje.html";
 });
 
 btnModificar.addEventListener("click", () => {
